@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { IconType } from "react-icons/lib";
 import { useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { linkedinProfileLink, githubProfileLink, whatsappLink } from "@/lib/socialMediaLinks";
+import { linkedinProfileLink, whatsappLink } from "@/lib/socialMediaLinks";
 
 export default function Contact(){
     //TODO create copy clipboard with toaster for every contact form
