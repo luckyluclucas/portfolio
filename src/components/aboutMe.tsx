@@ -73,7 +73,7 @@ return(
             duration: 0.7,
             ease: easeInOut,
         }}
-        // viewport={{ once: true}}
+        viewport={{ once: true}}
         className="relative max-w-screen"
     >    
         <div className="relative w-full max-w-[100vw] p-6 mx-auto md:max-w-7xl gap-4  min-h-[300px] flex flex-col">

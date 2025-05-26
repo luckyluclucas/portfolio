@@ -40,6 +40,7 @@ const carouselItems = [
           duration: 0.6,
           ease: "easeInOut",
         }}
+        viewport={{ once: true}}
         className="relative flex flex-col gap-4 items-center justify-center px-4"
       >
         <div className="relative mt-16 transition-transform ease-in-out duration-300 md:hover:scale-95 cursor-pointer h-60 w-60 transition-transform ease-in-out duration-500 rounded-full border p-0 z-10">
