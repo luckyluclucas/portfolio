@@ -1,6 +1,5 @@
 "use client"
 import { useTheme } from "next-themes"
-import { MoonIcon } from "lucide-react"
 import { SunIcon } from "lucide-react"
 import { GiMoonOrbit } from "react-icons/gi";
 
