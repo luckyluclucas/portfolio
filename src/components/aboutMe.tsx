@@ -2,7 +2,7 @@
 import { Separator } from "@radix-ui/react-separator"
 import { SiTypescript, SiPostgresql, SiNextdotjs, SiJavascript } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { FaDocker, FaGit, FaLinux, FaNodeJs, FaWordpress, FaReact } from "react-icons/fa";
+import { FaDocker,FaPython, FaGit, FaLinux, FaNodeJs, FaWordpress, FaReact, FaServer  } from "react-icons/fa";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Link from "next/link";
 import {
@@ -39,21 +39,26 @@ export default function AboutMe(){
         { icon: SiNextdotjs, label: "Next.js" },
         { icon: SiJavascript, label: "JavaScript" },
         { icon: FaDocker, label: "Docker"},
-        { icon: FaGit, label: "Git"}
+        { icon: FaGit, label: "Git"},
+        { icon: FaPython, label: "Python"},
+        { icon: FaServer, label: "Machine Learning"}
     ]
 
-    const iconsDescriptions: Record<string, string> = {
+    const iconsDescriptions: Record<string, string> = {        
+        "Python": "Linguagem que uso para manipulação de dados, web, front, back, criação de modelos de Machine Learning, basicamente para tudo",
+        "Machine Learning": "implementado modelos variados para diferentes objetivos",
         "Linux":"Entusiasta de sistemas Linux, meu daily drive é um arch",
-        "Node": "Possuo uma boa familiaridade com o runtime do Node.js",
+        "Node": "Já fiz muita coisa com o runtime do Node.js",
         "WordPress": "Já entreguei projetos com wordpress, apesar de não ser minha principal ferramenta / área de especialização",
         "Docker": "Costumo utilizar containers Docker para executar tanto o banco de dados PostgreSQL quanto as aplicações que desenvolvo.",
         "JavaScript": "Atualmente minha segunda linguagem de escolha, acabo sempre optando por typescript devido ao melhor suporte a tipagens.",
         "Next.js": "Framework que mais utilizo para desenvolvimento web",
         "React": "Simplesmente a lib mais famosa para front end, meu GOTO para qualquer front end web",
         "TailWindCss": "Melhor maneira de escrever css",
-        "TypeScript": "Js da microsoft com types, minha principal liguagem",
+        "TypeScript": "Js da microsoft com types",
         "PostgresSQL": "O banco de dados que sempre uso em meus projetos, open source e bom",
-        "Git": "Versionador de código utilizado em todos meus projetos."
+        "Git": "Versionador de código utilizado em todos meus projetos.",
+
     }
 
     const icons = iconsValues.map((item)=>(
@@ -81,12 +86,14 @@ return(
                 <h1 className="indent-8 text-3xl font-bold">Sobre Mim</h1>
                 <Separator orientation="horizontal" className="max-w-[90vw] dark:bg-white z-10 bg-muted h-[1px] w-full dark:bg-white" />
                 <div className="flex flex-col md:flex-row text-base leading-8 indent-4 rounded-lg border-1 p-4 min-h-76 border-muted dark:border-white/50">
-                    Há quatro anos venho me dedicando ao universo da programação. Fluente em inglês, tenho domínio sólido do ecossistema JavaScript/TypeScript, 
-                    atuando com confiança tanto no front-end quanto no back-end. 
-                    Atualmente curso Análise e Desenvolvimento de Sistemas na PUC Paraná e sou natural de Curitiba, onde resido. 
-                     Desde cedo, sempre fui fascinado pelo universo da tecnologia — da desmontagem de hardwares 
-                     à lógica por trás dos softwares. Meu objetivo é simples e apaixonado: trabalhar com qualquer área relacionada à TI,
-                      seja na manutenção e operação do hardware ou no desenvolvimento, manutenção e criação de software para qualquer solução.
+                   <div><p>Minha jornada com a tecnologia é uma vocação de vida inteira, enraizada desde a infância – do fascínio pela desmontagem e engenharia de hardware à maestria na lógica por trás dos softwares.
+
+este percurso contínuo me conferiu uma ótima fluência em inglês e um domínio em múltiplas stacks de tecnologia, operando com excelência e autonomia em qualquer posição full-stack (front-end e back-end), data science e machine learning ou até embedding em dispositivos iot.
+
+</p><p>Atualmente, estou cursando análise e desenvolvimento de sistemas na puc-paraná, onde continuo consolidando minha visão arquitetônica e analítica, assim como meu domínio nas diversas areás de t.i.
+
+meu objetivo de carreira é a aplicação estratégica desse conhecimento multidisciplinar: ser o arquiteto essencial em qualquer pilar da tecnologia da informação. seja otimizando a operação e manutenção de infraestruturas críticas, treinando diferentes modelos de machine learning, ou liderando o desenvolvimento, arquitetura e sustentação de soluções de software de ponta, meu propósito é entregar valor e inovação em toda a camada de ti.
+</p> </div>
                 <Separator orientation="vertical" className="bg-muted dark:bg-white/50 max-h-[90%] mx-6 w-[1px]" />
                 <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="item-1">

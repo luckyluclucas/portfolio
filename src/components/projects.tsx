@@ -28,8 +28,8 @@ export default function Projects() {
         },
 
         {
-            tab: "Estética Clínica",
-            text: "Clínica de Estética",
+            tab: "Outros",
+            text: "Outros",
         }
 
     ]
@@ -103,9 +103,9 @@ export default function Projects() {
                                 <p>Source Code</p>
                             </Link>
                         </TabsContent>
-                        <TabsContent value={"Estética Clínica"} className="flex flex-col">
+                        <TabsContent value={"Outros"} className="flex flex-col">
                             <h1 className="md:indent-4 text-xl my-1 font-semibold flex md:flex-row w-full ">
-                                Clínica de estética
+                               E os outros 
                                 <div className="flex flex-row gap-4 ml-auto my-auto">
                                     {icons2.map(({ Icon, label }, index) => (
                                         <HoverCard key={index} openDelay={100}>
@@ -121,8 +121,7 @@ export default function Projects() {
                             </h1>
                             <Separator orientation="horizontal" className="max-w-64 dark:bg-white/50 my-2 z-10 bg-muted h-[1px]" />
                             <div className="text-base indent-4">
-                                <iframe className="w-full" src="https://bribellos.com.br">
-                                </iframe>
+                              <div>Os outros projetos são confidenciais, e não poderam ser disponibilizados por questões tanto éticas quanto profissionais</div> 
                             </div>
                             <Link className="mt-4 w-fit flex flex-row" href="">
                                 <FaGithubAlt className="mx-4" size={28} />

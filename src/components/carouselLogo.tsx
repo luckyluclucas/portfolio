@@ -30,7 +30,7 @@ const LogoCarousel: FC<Props> = ({ items, animate = true, shadows = false }) => 
           {items.map(({ text, classes }) => (
             <p
               key={text}
-              className={`ml-4 rounded-sm px-[0.8rem] text-xl w-40 dark:bg-slate-900/40 dark:text-white text-center font-bold leading-[5rem] border-1 mx-1 transition-all ease-in-out
+              className={`ml-4 rounded-sm px-[0.8rem] text-xl w-40 dark:bg-slate-900/20 dark:text-white text-center font-bold leading-[5rem] border-1 mx-1 transition-all ease-in-out
               duration-200 hover:scale-105 tracking-tight ${classes}`}
             >
               {text}
