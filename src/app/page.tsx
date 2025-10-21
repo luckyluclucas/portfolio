@@ -81,7 +81,7 @@ export default function Home() {
             href="/Curriculo-cv.pdf"
             className="cursor-pointer bg-slate-900/40 group overflow-hidden h-16 text-center text-lg py-4 px-6  relative hover:shadow-xl hover:ring-1 dark:hover:ring-zinc-200/60 duration-300 font-semibold dark:bg-slate-900 rounded-full w-fit text-white "
           >
-            Currículo
+            Currículo -
             <div
               className="absolute h-[200px] top-[-76] w-5 bg-gradient-to-r from-white/10
            via-white/50 to-white-10 -left-14 -rotate-45 blur-sm group-hover:left-[150%] group-hover:delay-200 duration-700"
