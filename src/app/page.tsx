@@ -69,7 +69,7 @@ export default function Home() {
               </Avatar>
             </Link>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold dark:text-white h-[10rem] text-center">
+          <h1 className="text-4xl md:text-4xl font-bold dark:text-white h-[10rem] text-center">
             <TypewriterEffectSmooth className="mx-auto" words={words} />
           </h1>
           <div className="md:indent-4 md:leading-12 md:mx-22 text-base text-center md:text-4xl dark:text-neutral-200 py-4">
