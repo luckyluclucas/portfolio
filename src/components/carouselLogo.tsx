@@ -1,45 +1,75 @@
 "use client"
 
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react"
 
-type item = {
+type Item = {
   text: string
-  classes?: string,
+  classes?: string
 }
 
 interface Props {
-  items: item[];
-  animate?: boolean;
-  shadows?: boolean;
+  items: Item[]
+  speed?: number
 }
 
-const LogoCarousel: FC<Props> = ({ items, animate = true, shadows = false }) => {
+const LogoCarousel: FC<Props> = ({ items, speed = 0.55 }) => {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const rafRef = useRef<number>(0)
+  const xRef = useRef(0)
+  const pausedRef = useRef(false)
+
+  // Two identical copies — when we scroll exactly -halfWidth, content
+  // at position 0 is indistinguishable from content at -halfWidth,
+  // so resetting to 0 is completely invisible.
+  const doubled = [...items, ...items]
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const tick = () => {
+      if (!pausedRef.current) {
+        xRef.current -= speed
+        const halfWidth = track.scrollWidth / 2
+        if (Math.abs(xRef.current) >= halfWidth) {
+          xRef.current = 0
+        }
+        // translate3d forces GPU compositing layer — avoids repaint flicker
+        track.style.transform = `translate3d(${xRef.current}px, 0, 0)`
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [speed])
+
   return (
     <div
-      className="flex overflow-hidden py-6 m-4"
+      className="overflow-hidden py-6 mx-4"
       style={{
-        maskImage: `${shadows && "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)"}`,
+        maskImage:
+          "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
       }}
+      onMouseEnter={() => { pausedRef.current = true }}
+      onMouseLeave={() => { pausedRef.current = false }}
     >
-      {/* If your text don't fit entirely on your screen, try increasing the length of the array below. */}
-      {Array.from({ length: 5 }).map((_, index) => (
-        <div
-          key={index}
-          className={`flex shrink-0 ${animate && "animate-logo-carousel"}`}
-        >
-          {items.map(({ text, classes }) => (
-            <p
-              key={text}
-              className={`ml-4 rounded-sm px-[0.8rem] text-xl w-40 dark:bg-slate-900/20 dark:text-white text-center font-bold leading-[5rem] border-1 mx-1 transition-all ease-in-out
-              duration-200 hover:scale-105 tracking-tight ${classes}`}
-            >
-              {text}
-            </p>
-          ))}
-        </div>
-      ))}
+      <div ref={trackRef} className="flex w-max will-change-transform">
+        {doubled.map(({ text, classes }, i) => (
+          <div
+            key={i}
+            className={`rounded-xl px-4 text-sm w-36 dark:bg-white/5 bg-black/5
+            dark:text-white text-center font-semibold leading-[3.5rem]
+            border border-border/40 dark:border-white/10 mx-1 shrink-0
+            transition-colors duration-200 hover:bg-accent/60
+            hover:border-border/70 tracking-tight ${classes ?? ""}`}
+          >
+            {text}
+          </div>
+        ))}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default LogoCarousel;
+export default LogoCarousel

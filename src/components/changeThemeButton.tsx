@@ -1,24 +1,49 @@
 "use client"
 import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 import { SunIcon } from "lucide-react"
-import { GiMoonOrbit } from "react-icons/gi";
+import { GiMoonOrbit } from "react-icons/gi"
+import * as motion from "motion/react-client"
 
-export default function ThemeButton() {
+export default function ThemeButton({ className }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  const { theme, setTheme } = useTheme()
+  useEffect(() => setMounted(true), [])
 
-  if (theme !== 'light' && theme !== 'dark') {
-    return null
+  if (!mounted) {
+    return <div className={`w-10 h-10 rounded-full ${className ?? ''}`} />
   }
 
+  const isDark = resolvedTheme === 'dark'
+
   return (
-    <button
-      onClick={() => theme == 'light' ? setTheme('dark') : setTheme('light')}
-      className={`absolute hover:cursor-pointer z-10 top-1 left-1 p-2 rounded-full ${theme == 'dark' ? 'bg-transparent' : 'bg-white/22 rounded-full'}`}>
-      {theme == 'light' ?
-        <GiMoonOrbit size={32} color="black" fill="black" /> :
-        <SunIcon size={28} color="white" fill="white" />
-      }
-    </button>
+    <motion.button
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      whileHover={{ scale: 1.12 }}
+      whileTap={{ scale: 0.88 }}
+      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+      className={`hover:cursor-pointer z-10 p-2 rounded-full transition-colors ${
+        isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-black/10 hover:bg-black/20'
+      } ${className ?? ''}`}
+    >
+      {isDark ? (
+        <motion.div
+          key="sun"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        >
+          <SunIcon size={24} color="white" fill="white" />
+        </motion.div>
+      ) : (
+        <motion.div
+          key="moon"
+          animate={{ rotate: [0, 15, -10, 15, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+        >
+          <GiMoonOrbit size={24} color="black" fill="black" />
+        </motion.div>
+      )}
+    </motion.button>
   )
 }
